@@ -28,13 +28,22 @@ Kendaraan::Kendaraan(const Kendaraan& k){
 Kendaraan::~Kendaraan() {
 }
 
+Kendaraan& Kendaraan::operator=(const Kendaraan& k){
+    if (this != &k) {
+        this->nomor = k.nomor;
+        this->tahun = k.tahun;
+        this->merk = k.merk;
+        this->kategori = k.kategori;
+    }
+    return *this;
+}
+
 void Kendaraan::printInfo(){
     cout << "Nomor: " << this->nomor << endl;
     cout << "Tahun Keluaran: " << this->tahun << endl;
     cout << "Merk: " << this->merk << endl;
     cout << "Kategori: " << this->kategori << endl;
 }
-
 
 int Kendaraan::biayaSewa(int lamaSewa){
     int biaya;

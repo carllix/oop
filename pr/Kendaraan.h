@@ -18,6 +18,9 @@ class Kendaraan {
         // dtor
         ~Kendaraan();
 
+        // copy assignment operator
+        Kendaraan& operator=(const Kendaraan&);
+
         void printInfo();
         int biayaSewa(int lamaSewa);
 

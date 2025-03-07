@@ -16,9 +16,12 @@ class KoleksiKendaraan{
         // dtor
         ~KoleksiKendaraan();
 
+        // copy assignment operator
+        KoleksiKendaraan& operator=(const KoleksiKendaraan&);
+        
         void printAll();
-        void operator<<(Kendaraan);
-        void operator<<(KoleksiKendaraan);
+        KoleksiKendaraan& operator<<(const Kendaraan&);
+        KoleksiKendaraan& operator<<(const KoleksiKendaraan&);
 
     private:
         Kendaraan* arrayKendaraan;

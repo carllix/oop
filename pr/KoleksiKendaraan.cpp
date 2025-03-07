@@ -3,54 +3,89 @@
 
 using namespace std;
 
-KoleksiKendaraan::KoleksiKendaraan(){
+KoleksiKendaraan::KoleksiKendaraan()
+{
     this->size = 100;
     this->nEff = 0;
     this->arrayKendaraan = new Kendaraan[this->size];
 }
 
-KoleksiKendaraan::KoleksiKendaraan(int size){
+KoleksiKendaraan::KoleksiKendaraan(int size)
+{
     this->size = size;
     this->nEff = 0;
     this->arrayKendaraan = new Kendaraan[this->size];
 }
 
-KoleksiKendaraan::KoleksiKendaraan(const KoleksiKendaraan& kk){
+KoleksiKendaraan::KoleksiKendaraan(const KoleksiKendaraan &kk)
+{
     this->size = kk.size;
     this->nEff = kk.nEff;
     this->arrayKendaraan = new Kendaraan[this->size];
 
-    for (int i = 0; i<this->nEff; i++){
+    for (int i = 0; i < this->nEff; i++)
+    {
         this->arrayKendaraan[i] = kk.arrayKendaraan[i];
     }
 }
 
-KoleksiKendaraan::~KoleksiKendaraan(){
-    delete[] this->arrayKendaraan;
+KoleksiKendaraan::~KoleksiKendaraan()
+{
+    if (this->arrayKendaraan)
+    {
+        delete[] this->arrayKendaraan;
+        this->arrayKendaraan = nullptr;
+    }
 }
 
-void KoleksiKendaraan::printAll(){
-    for (int i = 0; i<this->nEff; i++){
-        cout << "Kendaraan Ke-" << i+1 << endl;
+KoleksiKendaraan &KoleksiKendaraan::operator=(const KoleksiKendaraan &kk)
+{
+    if (this != &kk)
+    {
+        delete[] this->arrayKendaraan;
+        this->size = kk.size;
+        this->nEff = kk.nEff;
+        this->arrayKendaraan = new Kendaraan[this->size];
+        for (int i = 0; i < this->nEff; i++)
+        {
+            this->arrayKendaraan[i] = kk.arrayKendaraan[i];
+        }
+    }
+    return *this;
+}
+
+void KoleksiKendaraan::printAll()
+{
+    for (int i = 0; i < this->nEff; i++)
+    {
+        cout << "Kendaraan Ke-" << i + 1 << ":" << endl;
         this->arrayKendaraan[i].printInfo();
         cout << endl;
     }
 }
 
-void KoleksiKendaraan::operator<<(Kendaraan k){
-    if ( this->nEff < this->size){
+KoleksiKendaraan &KoleksiKendaraan::operator<<(const Kendaraan &k)
+{
+    if (this->nEff < this->size)
+    {
         this->arrayKendaraan[this->nEff] = k;
         this->nEff++;
-    } else {
+    }
+    else
+    {
         cout << "Maaf, tidak dapat menambah kendaraan karena array sudah penuh." << endl;
     }
+    return *this;
 }
 
-void KoleksiKendaraan::operator<<(KoleksiKendaraan kk){
+KoleksiKendaraan &KoleksiKendaraan::operator<<(const KoleksiKendaraan &kk)
+{
     int i = 0;
-    while (this->nEff < this->size && i<kk.nEff){
+    while (this->nEff < this->size && i < kk.nEff)
+    {
         this->arrayKendaraan[this->nEff] = kk.arrayKendaraan[i];
         this->nEff++;
         i++;
     }
+    return *this;
 }
