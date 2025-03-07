@@ -22,8 +22,16 @@ int main(){
     k5.printInfo();
 
     // Test cctor
+    cout << "\nK3 cctor: " << endl;
     Kendaraan k3copy = k3;
     k3copy.printInfo();
+
+    // Test operator assignment
+    cout << "\nK3 New: " << endl;
+    Kendaraan k3New;
+    k3New = k3;
+    k3New.printInfo();
+
 
     cout << endl;
     // Test biaya sewa
@@ -35,16 +43,14 @@ int main(){
     cout << "Biaya Sewa Minibus 6 hari: " << k3.biayaSewa(6) << endl;
     cout << "Biaya Sewa Minibus 7 hari: " << k3.biayaSewa(7) << endl;
 
-    cout << endl;
     // Test Koleksi Kendaraan
     KoleksiKendaraan kk = KoleksiKendaraan(2);
     kk << k2;
 
     KoleksiKendaraan kk2 = KoleksiKendaraan(2);
-    kk2 << k3;
-    kk2 << k4;
+    kk2 << k3 << k4;
 
-    cout << "Koleksi Kendaraan 1: " << endl;
+    cout << "\nKoleksi Kendaraan 1: " << endl;
     kk.printAll();
 
     cout << "\nKoleksi Kendaraan 2: " << endl;
@@ -53,5 +59,11 @@ int main(){
     cout << "\nKoleksi Kendaraan 1 + 2: " << endl;
     kk << kk2;
     kk.printAll();
+    
+    // Test operator assignment
+    KoleksiKendaraan kkNew = KoleksiKendaraan(2);
+    kkNew = kk;
+    cout << "\nKoleksi Kendaraan 1 + 2 New: " << endl;
+    kkNew.printAll();
     return 0;
 }
