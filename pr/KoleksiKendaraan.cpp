@@ -38,7 +38,7 @@ KoleksiKendaraan::~KoleksiKendaraan()
     }
 }
 
-KoleksiKendaraan &KoleksiKendaraan::operator=(const KoleksiKendaraan &kk)
+KoleksiKendaraan& KoleksiKendaraan::operator=(const KoleksiKendaraan &kk)
 {
     if (this != &kk)
     {
@@ -64,7 +64,7 @@ void KoleksiKendaraan::printAll()
     }
 }
 
-KoleksiKendaraan &KoleksiKendaraan::operator<<(const Kendaraan &k)
+KoleksiKendaraan& KoleksiKendaraan::operator<<(const Kendaraan &k)
 {
     if (this->nEff < this->size)
     {
@@ -78,7 +78,7 @@ KoleksiKendaraan &KoleksiKendaraan::operator<<(const Kendaraan &k)
     return *this;
 }
 
-KoleksiKendaraan &KoleksiKendaraan::operator<<(const KoleksiKendaraan &kk)
+KoleksiKendaraan& KoleksiKendaraan::operator<<(const KoleksiKendaraan &kk)
 {
     int i = 0;
     while (this->nEff < this->size && i < kk.nEff)
